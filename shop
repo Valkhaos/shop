@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alaska - Tienda de Camisas Personalizadas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        header {
+            background-color: #9b111e; /* Rojo sangre */
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilos para las camisas */
+        .shirt-collection {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .shirt-item {
+            background-color: #f2f2f2;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 250px;
+        }
+
+        .shirt-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .shirt-item h3 {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .shirt-item p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .shirt-item button {
+            background-color: #9b111e; /* Rojo sangre */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .shirt-item button:hover {
+            background-color: #d32f2f;
+        }
+
+        /* Estilos del generador de diseños */
+        .design-generator {
+            background-color: #f2f2f2;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .design-generator h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .design-generator input[type="file"] {
+            margin-top: 20px;
+        }
+
+        .design-generator button {
+            background-color: #9b111e; /* Rojo sangre */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .design-generator button:hover {
+            background-color: #d32f2f;
+        }
+
+        /* Carrito de compras */
+        .cart {
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #9b111e; /* Rojo sangre */
+            color: white;
+            padding: 20px;
+            border-radius: 8px 0 0 8px;
+            box-shadow: -2px 2px 8px rgba(0,0,0,0.1);
+            font-size: 1rem;
+        }
+
+        .cart h2 {
+            margin-top: 0;
+        }
+
+        .cart ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart ul li {
+            margin-bottom: 10px;
+        }
+
+        .cart button {
+            background-color: #ffffff;
+            color: #9b111e;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+
+        .cart button:hover {
+            background-color: #f2f2f2;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Cabecera -->
+    <header>
+        <h1>Alaska</h1>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Camisas</a>
+            <a href="#">Generador de Diseño</a>
+            <a href="#">Carrito</a>
+        </nav>
+    </header>
+
+    <!-- Colección de Camisas -->
+    <div class="shirt-collection">
+        <div class="shirt-item">
+            <img src="https://via.placeholder.com/250" alt="Camisa 1">
+            <h3>Camisa Overized Blanca</h3>
+            <p>Camisa de algodón con corte overized.</p>
+            <button class="add-to-cart">Añadir al carrito</button>
+        </div>
+        <div class="shirt-item">
+            <img src="https://via.placeholder.com/250" alt="Camisa 2">
+            <h3>Camisa Overized Negra</h3>
+            <p>Camisa con diseño minimalista y corte overized.</p>
+            <button class="add-to-cart">Añadir al carrito</button>
+        </div>
+        <!-- Añadir más camisas aquí -->
+    </div>
+
+    <!-- Generador de Diseño -->
+    <div class="design-generator">
+        <h2>Genera tu diseño personalizado</h2>
+        <p>Sube tu diseño y personaliza tu camisa.</p>
+        <input type="file" id="file-upload" accept="image/*">
+        <br>
+        <button id="upload-btn">Subir Diseño</button>
+    </div>
+
+    <!-- Carrito de Compras -->
+    <div class="cart" id="cart">
+        <h2>Carrito</h2>
+        <ul id="cart-items">
+            <!-- Los productos se añadirán dinámicamente aquí -->
+        </ul>
+        <button id="view-cart-btn">Ver Carrito Completo</button>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Funcionalidad para añadir productos al carrito
+        const cartItems = [];
+        const addButtons = document.querySelectorAll(".add-to-cart");
+
+        addButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                const shirtName = this.parentElement.querySelector("h3").textContent;
+                cartItems.push(shirtName);
+                updateCart();
+            });
+        });
+
+        function updateCart() {
+            const cartList = document.getElementById("cart-items");
+            cartList.innerHTML = ""; // Limpiar el carrito actual
+            cartItems.forEach(item => {
+                const listItem = document.createElement("li");
+                listItem.textContent = item;
+                cartList.appendChild(listItem);
+            });
+        }
+
+        // Funcionalidad para subir un diseño
+        const uploadButton = document.getElementById("upload-btn");
+        uploadButton.addEventListener("click", function() {
+            const fileInput = document.getElementById("file-upload");
+            if (fileInput.files.length > 0) {
+                alert("¡Diseño subido con éxito!");
+            } else {
+                alert("Por favor selecciona un diseño.");
+            }
+        });
+    </script>
+</body>
+</html>
